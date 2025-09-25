@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Zoex — Build, Integrate, Ship</title>
+  <meta name="description" content="Zoex: product consulting and build services. We design, integrate, and ship robust solutions." />
+  <meta property="og:title" content="Zoex — Build, Integrate, Ship" />
+  <meta property="og:description" content="Product consulting and build services. We design, integrate, and ship robust solutions." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://zoex.io/og-image.png" />
+  <meta name="theme-color" content="#0ea5e9" />
+
+  <style>
+    /* ===== Design Tokens ===== */
+    :root {
+      --bg: #0b0d10;
+      --bg-elev: #101318;
+      --text: #e6e8eb;
+      --muted: #a7b0ba;
+      --brand: #0ea5e9;  /* primary accent */
+      --brand-2: #7dd3fc; /* light accent */
+      --ring: 0 0 0 3px rgba(14,165,233,.35);
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 16px;
+      --radius-sm: 12px;
+      --maxw: 1100px;
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #fbfdff;
+        --bg-elev: #ffffff;
+        --text: #101317;
+        --muted: #516071;
+        --brand: #0ea5e9;
+        --brand-2: #0369a1;
+        --shadow: 0 10px 30px rgba(2,6,23,.08);
+      }
+    }
+
+    /* ===== Base ===== */
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(1200px 800px at 70% -10%, rgba(14,165,233,.13), transparent),
+                  radial-gradient(900px 600px at 10% -20%, rgba(125,211,252,.10), transparent),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .container { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 20px; }
+
+    /* ===== Header ===== */
+    header {
+      position: sticky; top: 0; backdrop-filter: saturate(1.2) blur(8px);
+      background: color-mix(in oklab, var(--bg) 82%, transparent);
+      border-bottom: 1px solid color-mix(in oklab, var(--bg-elev) 70%, #000);
+      z-index: 20;
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
+    .brand {
+      display: inline-flex; gap: 10px; align-items: center; font-weight: 700; letter-spacing: .2px;
+    }
+    .brand-logo {
+      width: 28px; height: 28px; border-radius: 10px; background:
+        conic-gradient(from 210deg, var(--brand), var(--brand-2));
+      box-shadow: inset 0 0 0 2px rgba(255,255,255,.06);
+    }
+    nav a { opacity: .9; padding: 8px 12px; border-radius: 10px; }
+    nav a:hover { background: color-mix(in oklab, var(--bg-elev) 85%, #000); }
+
+    /* ===== Hero ===== */
+    .hero { padding: 80px 0 40px; }
+    .hero .wrap {
+      display: grid; gap: 28px; align-items: center;
+      grid-template-columns: 1.1fr .9fr;
+    }
+    @media (max-width: 900px){ .hero .wrap{ grid-template-columns: 1fr; } }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      color: var(--muted); font-size: 14px; letter-spacing: .3px;
+    }
+    .eyebrow .dot { width: 8px; height: 8px; border-radius: 999px; background: var(--brand); box-shadow: 0 0 0 6px rgba(14,165,233,.14); }
+    h1 { font-size: clamp(32px, 6vw, 56px); line-height: 1.08; margin: 8px 0 12px; }
+    .lead { font-size: clamp(16px, 2.4vw, 20px); color: var(--muted); max-width: 58ch; }
+    .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px; padding: 12px 16px;
+      border-radius: 12px; border: 1px solid color-mix(in oklab, var(--bg-elev) 75%, #000);
+      background: linear-gradient(180deg, color-mix(in oklab, var(--bg-elev) 95%, #fff), var(--bg-elev));
+      color: var(--text); font-weight: 600;
+      box-shadow: var(--shadow);
+      transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+    }
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 14px 40px rgba(0,0,0,.25); }
+    .btn.primary {
+      background: linear-gradient(180deg, color-mix(in oklab, var(--brand) 30%, #fff), var(--brand));
+      color: white; border-color: color-mix(in oklab, var(--brand) 70%, #000);
+    }
+    .btn:focus-visible { outline: none; box-shadow: var(--ring); }
+
+    .hero-card {
+      border: 1px solid color-mix(in oklab, var(--bg-elev) 70%, #000);
+      border-radius: var(--radius); background: linear-gradient(180deg, var(--bg-elev), color-mix(in oklab, var(--bg-elev) 85%, #000));
+      padding: 22px; box-shadow: var(--shadow);
+    }
+    .stat {
+      display:flex; align-items:center; justify-content:space-between; padding:14px; border-radius:12px;
+      background: color-mix(in oklab, var(--bg-elev) 88%, #000); margin-bottom:10px;
+    }
+    .stat b { font-size: 22px; }
+
+    /* ===== Sections ===== */
+    section { padding: 56px 0; }
+    .section-title { font-size: 28px; margin: 0 0 8px; }
+    .section-sub { color: var(--muted); margin: 0 0 22px; }
+
+    .grid {
+      display: grid; gap: 16px;
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @media (max-width: 900px){ .grid{ grid-template-columns: 1fr; } }
+
+    .card {
+      border: 1px solid color-mix(in oklab, var(--bg-elev) 70%, #000);
+      border-radius: var(--radius-sm);
+      background: linear-gradient(180deg, var(--bg-elev), color-mix(in oklab, var(--bg-elev) 88%, #000));
+      padding: 18px; box-shadow: var(--shadow);
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .card:hover { transform: translateY(-2px); box-shadow: 0 14px 40px rgba(0,0,0,.25); }
+    .card h3 { margin: 0 0 6px; font-size: 18px; }
+    .card p { margin: 0; color: var(--muted); }
+
+    .badge {
+      display: inline-flex; align-items: center; gap: 8px; padding: 8px 10px;
+      border-radius: 999px; border: 1px solid color-mix(in oklab, var(--bg-elev) 70%, #000);
+      background: color-mix(in oklab, var(--bg-elev) 94%, #000); font-size: 13px;
+    }
+
+    /* ===== Footer ===== */
+    footer {
+      border-top: 1px solid color-mix(in oklab, var(--bg-elev) 70%, #000);
+      padding: 28px 0; color: var(--muted); font-size: 14px;
+    }
+    .foot { display:flex; align-items:center; justify-content:space-between; gap: 12px; }
+    @media (max-width: 700px){ .foot{ flex-direction: column; } }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container nav">
+      <div class="brand" aria-label="Zoex home">
+        <span class="brand-logo" aria-hidden="true"></span>
+        <span>Zoex</span>
+      </div>
+      <nav aria-label="Primary">
+        <a href="#work">Work</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a class="badge" href="mailto:hello@zoex.io">Contact →</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container wrap">
+      <div>
+        <div class="eyebrow"><span class="dot"></span> Product consulting & build studio</div>
+        <h1>We design, integrate, and ship<br/>robust products — fast.</h1>
+        <p class="lead">From idea to launch: architecture, integrations, and clean execution.
+          We help teams move from <em>prototype</em> to <em>production</em> without the drama.</p>
+        <div class="cta-row">
+          <a class="btn primary" href="mailto:hello@zoex.io?subject=Project%20Inquiry%20%E2%80%94%20Zoex">Book a consult</a>
+          <a class="btn" href="#services">See services</a>
+        </div>
+      </div>
+
+      <aside class="hero-card" aria-label="highlights">
+        <div class="stat"><span>Time-to-MVP</span><b>4–8 weeks</b></div>
+        <div class="stat"><span>Integrations</span><b>HL7 · FHIR · DICOM · Mapbox</b></div>
+        <div class="stat"><span>Focus</span><b>Flutter · Supabase · Next.js</b></div>
+        <p style="color:var(--muted); margin:10px 4px 0;">You bring the problem; we bring architecture, velocity, and polish.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services">
+    <div class="container">
+      <h2 class="section-title">Services</h2>
+      <p class="section-sub">Engagements tuned for speed, quality, and outcomes.</p>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Product & Architecture</h3>
+          <p>Scope, system design, roadmaps, and decision docs that unblock your team.</p>
+        </div>
+        <div class="card">
+          <h3>Build & Integrate</h3>
+          <p>Flutter apps, Supabase backends, and complex integrations (HL7/FHIR/DICOM, Mapbox, auth).</p>
+        </div>
+        <div class="card">
+          <h3>Optimize & Scale</h3>
+          <p>Performance, reliability, CI/CD, observability, and cost control from day one.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Selected Work -->
+  <section id="work">
+    <div class="container">
+      <h2 class="section-title">Selected Work</h2>
+      <p class="section-sub">A glimpse at recent projects and focus areas.</p>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Realtime Venue Maps</h3>
+          <p>Mapbox-powered Flutter app with clustering, hot-zones, and Supabase analytics.</p>
+        </div>
+        <div class="card">
+          <h3>Healthcare Integrations</h3>
+          <p>HL7 ADT/ORM/ORU transformations, DICOM routing, and FHIR interoperability.</p>
+        </div>
+        <div class="card">
+          <h3>Auth & Data Layers</h3>
+          <p>Secure auth, storage, and policies for multi-tenant products with clean DX.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title">About</h2>
+      <p class="section-sub">Zoex is a small studio led by builders who love clean systems and fast feedback loops.</p>
+
+      <div class="card" style="display:flex; gap:18px; align-items:center;">
+        <div style="min-width:56px; height:56px; border-radius:14px; background:
+          conic-gradient(from 160deg, var(--brand), var(--brand-2)); box-shadow: inset 0 0 0 2px rgba(255,255,255,.05);"></div>
+        <div>
+          <p style="margin:0; color:var(--text)"><strong>Origin story:</strong> Named in spirit of Zoey — a good dog with excellent product instincts.</p>
+          <p style="margin:.3rem 0 0; color:var(--muted)">We lean pragmatic over perfect, communicate clearly, and ship iteratively.</p>
+        </div>
+      </div>
+
+      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:16px;">
+        <span class="badge">Flutter</span>
+        <span class="badge">Supabase</span>
+        <span class="badge">Next.js</span>
+        <span class="badge">Mapbox</span>
+        <span class="badge">HL7 · FHIR · DICOM</span>
+        <span class="badge">CI/CD</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section>
+    <div class="container card" style="text-align:center;">
+      <h3 style="margin: 8px 0;">Have a project in mind?</h3>
+      <p style="margin: 0 0 12px; color: var(--muted);">Tell us about your goals and constraints — we’ll propose a path to shipped.</p>
+      <a class="btn primary" href="mailto:hello@zoex.io?subject=Project%20Inquiry%20%E2%80%94%20Zoex">Start a conversation</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container foot">
+      <div>© <span id="y"></span> Zoex. All rights reserved.</div>
+      <div style="display:flex; gap:12px;">
+        <a href="mailto:hello@zoex.io">Email</a>
+        <span aria-hidden="true">·</span>
+        <a href="#" aria-disabled="true">LinkedIn</a>
+        <span aria-hidden="true">·</span>
+        <a href="#" aria-disabled="true">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Set current year in footer
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
